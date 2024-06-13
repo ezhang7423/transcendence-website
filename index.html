@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Transcendence: Generative Models Can Outperform The Experts That Train Them">  
+  <meta name="description" content="Transcendence: Generative Models Can Outperform The Experts That Train Them">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Transcendence: Generative Models Can Outperform
     The Experts That Train Them</title>
@@ -80,7 +80,7 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">Transcendence: Generative Models Can Outperform
               The Experts That Train Them</h1>
-            <div class="is-size-5 publication-authors">
+                    <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://eddie.win">Eddie Zhang</a><sup>1,2</sup>,</span>
               <span class="author-block">
@@ -117,6 +117,7 @@
             </div>
 
 
+            
             <div class="column has-text-centered">
               <div class="publication-links">
                 <!-- Demo Link. -->
@@ -130,7 +131,6 @@
                     <span>Play with our Model</span>
                   </a>
 
-                  
                   <!-- Code Link. -->
                   <span class="link-block">
                     <a target="_blank" href="https://github.com/ezhang7423/chess-research"
@@ -150,7 +150,7 @@
                       </span>
                       <span>Data</span>
                     </a>
-                  <!-- Model Link. -->
+                     <!-- Model Link. -->
                   <span class="link-block">
                     <a target="_blank" href="https://huggingface.co/datasets/ezipe/lichess-models/"
                       class="external-link button is-normal is-rounded is-dark">
@@ -358,16 +358,28 @@
           Additionally, we define \( \argmax(q) \in P(\cy) \) to be the uniform distribution over the maximal values of
           \( q \),
           namely
+          <div class="largescreen">
+            \[
 
-          \[
+            \argmax{q} = \begin{cases}
+            1/|{Y_q}| & \mathrm{if}~y \in Y_q \\
+            0 & \mathrm{if}~y \notin Y_q
+            \end{cases}, ~~~\mathrm{where}~~~ Y_q = \{y \in \cy ~:~q_y = \max(q)\}
 
-          \argmax{q} = \begin{cases}
-          1/|{Y_q}| & \mathrm{if}~y \in Y_q \\
-          0 & \mathrm{if}~y \notin Y_q
-          \end{cases}, ~~~\mathrm{where}~~~ Y_q = \{y \in \cy ~:~q_y = \max(q)\}
+            \]
+          </div>
 
-          \]
+          <div class="smallscreen">
+            \[
 
+            \argmax{q} = \begin{cases}
+            1/|{Y_q}| & \mathrm{if}~y \in Y_q \\
+            0 & \mathrm{if}~y \notin Y_q
+            \end{cases},\] <br />
+            \[ ~~~\mathrm{where}~~~ Y_q = \{y \in \cy ~:~q_y = \max(q)\}
+
+            \]
+          </div>
           Now, define \( \hat{f}_\tau \) to be the temperature sampling of \( \hat{f} \), i.e.
 
           \[
@@ -438,7 +450,7 @@
           1500 likely would also transcend. Instead, as predicted, Chessformer 1500 likely is not transcendent due
           to a lack of diversity in its dataset. </div>
       </div>
-      <div style="display: flex; align-items: center;">
+      <div class='entropy'>
         <div class="columns is-centered has-text-centered" style="margin-top: 15px; flex-shrink: 0;">
           <div class="column is-full-width">
             <img style="width: 400px;" src="./static/images/entropy_of_action_distribution_over_common_states.png"
@@ -466,7 +478,7 @@
       hidden
       layer latent representations of game transcripts during training time. The colors represent the probability of
       winning,
-      with $+1$ corresponding to a state where White has won and -1 to Black. We also visualize several board states
+      with +1 corresponding to a state where White has won and -1 to Black. We also visualize several board states
       associated different clusters within the t-SNE embedding, and their associated expected reward when following
       the
       expert
@@ -479,13 +491,14 @@
         <br />
       </div>
 
-      We visualize the full TSNE here, coloring by the reward of the game. We see that the model has learned some
-      representation of the
-      reward, with high absolute reward states being more likely to be near each other in the latent space. This also
-      points towards evidence that the model has learned some sort equivariant representation of the player identity,
-      as
-      the region of symmetric high reward states indicate. Note that reward is not
-      directly given to the model during training.
+      Here, we generate a t-SNE embedding of
+      ChessFormer's last hidden layer latent representations of game transcripts during training time. The colors
+      represent the probability of winning, with +1 corresponding to a state where White has won and 0 to Black.
+      Probabiliy of winning is computed through the Stockfish analysis engine. We also visualize several board states
+      associated with different clusters in the t-SNE embedding, and their associated expected reward when following the
+      expert Stockfish distribution. Note that the model distinguishes between states where the outcome has already been
+      determined (the two left boards), versus opening states that are extremely similar (the two right boards).
+
 
       <div class="columns is-centered has-text-centered" style="margin: 15px 0;">
         <div class="column is-full-width">
@@ -550,6 +563,7 @@
         </div>
         <br />
       </div>
+      <br /> <br />
 
     </div>
     <div class="container is-max-desktop content">
@@ -572,7 +586,7 @@
       </div>
       <br /> <br />
 
-      The second expert output distribution. Symmetric to to the first expert, it also puts non-negligible mass
+      The second expert output distribution. Symmetric to the first expert, it also puts non-negligible mass
       on the purple, high-reward action. However, it samples a low-reward action the majority of the time on the right.
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
@@ -581,7 +595,7 @@
         <br />
       </div>
       <br /> <br />
-      By taking the average of the first and second expert, we observe that this distribution now puts the majority of
+      By taking the average of the first and second experts, we observe that this distribution now puts the majority of
       mass onto the correct action.
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
@@ -596,7 +610,9 @@
         <div class="column is-full-width">
           <img style="margin: 15px 0" src="./static/images/intuition4.png" alt="chart">
         </div>
+        <br />
       </div>
+      <br /> <br />
     </div>
 
     </div>
@@ -604,7 +620,7 @@
 
 
 
-  <section class="section" style="padding-top: 0;">
+  <section class="section">
     <div class="container is-max-desktop">
 
       <!-- Concurrent Work. -->
