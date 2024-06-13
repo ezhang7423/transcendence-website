@@ -167,6 +167,7 @@ body {
   width: 100%; /* Make image responsive */
   max-width: 400px; /* Maximum width of image */
 }
+
 @media (max-width: 768px) {
   .entropy {
     flex-direction: column; /* Stack items vertically on smaller screens */
@@ -179,9 +180,6 @@ body {
   .entropy img {
     max-width: 95%; /* Slightly smaller max-width for mobile to ensure it fits within screen boundaries */
   }
-}
-/* Media query for devices with max-width of 768px */
-@media (max-width: 768px) {
   .katex {
     font-size: .5em; /* Reduces the font size of KaTeX elements */
   }
@@ -190,9 +188,6 @@ body {
     transform: scale(0.7); /* Scales down displayed equations */
     text-align: left;
   }
-}
-
-@media (max-width: 768px) {
   h1.title.is-1.publication-title {
     font-size: 1.8em; /* Reduces the font size on smaller screens */
   }
